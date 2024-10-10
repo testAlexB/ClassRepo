@@ -59,6 +59,22 @@ namespace MyMatrix
             return result;
         }
 
+        public void AddDefaultColumn()
+        {
+            /// ДЗ: реализовать добавление столбца со всеми нулями
+        }
+
+        public string CellValue(int indexRow, int indexColumn)
+        {
+            int indexElement = indexRow * columnCount_ + indexColumn;
+            if (indexElement < 0 || indexElement >= row_.Count)
+            {
+                return "Значения нет";
+            }
+
+            return Convert.ToString(row_[indexElement]);
+        }
+
 
     }
 }

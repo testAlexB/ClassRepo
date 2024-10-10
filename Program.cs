@@ -19,6 +19,11 @@ namespace ConsoleApp1
             Console.WriteLine("after AddRow matrix");
             Console.WriteLine(matrix.ToFormattedString());
 
+            Console.WriteLine("cell value (0, 3) = " + matrix.CellValue(0, 3));
+            Console.WriteLine("cell value (1, 3) = " + matrix.CellValue(1, 3));
+            Console.WriteLine("cell value (2, 5) = " + matrix.CellValue(2, 5));
+            Console.WriteLine("cell value (-2, 5) = " + matrix.CellValue(-2, 5));
+
             Console.ReadKey();
         }
     }
