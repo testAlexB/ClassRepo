@@ -75,6 +75,29 @@ namespace MyMatrix
             return Convert.ToString(row_[indexElement]);
         }
 
+        public int RowCount()
+        {
+            return row_.Count / columnCount_;
+        }
+
+        public string SumMainDiagonal()
+        {
+            if(RowCount() != columnCount_)
+            {
+                return "Матрица не квадратная";
+            }
+
+            int result = 0;
+            for(int indexColumn = 0; indexColumn < columnCount_; indexColumn++) 
+            {
+                int indexRow = indexColumn;
+                int element = Convert.ToInt32(CellValue(indexRow, indexColumn)); 
+                result += element;
+            }
+
+            return Convert.ToString(result);
+        }
+
 
     }
 }
