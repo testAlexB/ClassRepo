@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Math.cs" />
     <Compile Include="Matrix.cs" />
+    <Compile Include="MatrixOperations.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

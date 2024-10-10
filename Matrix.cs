@@ -80,6 +80,23 @@ namespace MyMatrix
             return row_.Count / columnCount_;
         }
 
+        public List<int> Row(int indexRow)
+        {
+            int indexStartRow = indexRow * columnCount_;
+            List<int> result = new List<int>();
+            for (int i = indexRow; i < indexStartRow + columnCount_; ++i)
+            {
+                result.Add(row_[i]);
+            }
+
+            return result;
+        }
+
+        public int ColumnCount()
+        {
+            return columnCount_;
+        }
+
         public string SumMainDiagonal()
         {
             if(RowCount() != columnCount_)

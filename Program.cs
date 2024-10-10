@@ -27,6 +27,17 @@ namespace ConsoleApp1
 
             Console.WriteLine("sum main diagonal: " + matrix.SumMainDiagonal());
 
+            Matrix matrix2 = new Matrix();
+            matrix2.SetColumnCount(4);
+            matrix2.AddRow(new List<int> { 1, 2 });
+            matrix2.AddRow(new List<int> { 1, 2, 3 });
+            matrix2.AddRow(new List<int> { 2, 3, 4 });
+            matrix2.AddRow(new List<int> { 2, 3, 4, 5, 6, 7 });
+
+            Matrix unionMatrix = MatrixOperations.Steplers(matrix2, matrix);
+            Console.WriteLine("unionMatrix:");
+            Console.WriteLine(unionMatrix.ToFormattedString());
+
             Console.ReadKey();
         }
     }
