@@ -8,6 +8,18 @@ namespace MyMatrix
         private List<int> row_ = new List<int>();
         private int columnCount_;
 
+        public Matrix(int columnCount)
+        {
+            row_ = new List<int>();
+            columnCount_ = columnCount;
+        }
+
+        public Matrix(List<int> rowZZZZZZZZZZZZZZZZ, int columnCount)
+        {
+            columnCount_ = columnCount;
+            row_ = rowZZZZZZZZZZZZZZZZ;
+        }
+
         public void SetColumnCount(int c)
         {
             columnCount_ = c;

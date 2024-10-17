@@ -8,11 +8,9 @@ namespace MyMatrix
         // + сложение матриц с разныи числом строк
         public static Matrix Steplers(Matrix m1, Matrix m2)
         {
-           Matrix result = new Matrix();
+           Matrix result = new Matrix(m1.ColumnCount() + m2.ColumnCount());
            if(m1.RowCount() == m2.RowCount())
            {
-                result.SetColumnCount(m1.ColumnCount() + m2.ColumnCount());
-
                 List<int> rowM1 = m1.Row(0);
                 List<int> rowM2 = m2.Row(0);
                 rowM1.AddRange(rowM2);
