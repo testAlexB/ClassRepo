@@ -1,15 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EnumerationApp
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
+            ВремяСуток ТекущееВремяСуток = EnumOperations.Приветствовать();
+            string user = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+            Console.WriteLine(EnumOperations.ConvertEnumToString(ТекущееВремяСуток)+ ", " + user);
+
+            Console.ReadKey();
         }
     }
 }
