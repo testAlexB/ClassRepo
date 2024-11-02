@@ -1,4 +1,6 @@
-﻿namespace Inheritance
+﻿using System;
+
+namespace Inheritance
 {
     public class PersonCollege
     {
@@ -14,6 +16,11 @@
         public string GetName()
         { 
             return name_;
+        }
+
+        public void MovePersonToCollege()
+        {
+            Console.WriteLine("               " + name_);
         }
     }
 }
