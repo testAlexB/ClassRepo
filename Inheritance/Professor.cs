@@ -37,5 +37,10 @@ namespace Inheritance
 
             return "Неизвестно";
         }
+
+        public override double GetBonus()
+        {
+            return 1.8 * cost_;
+        }
     }
 }

@@ -13,5 +13,10 @@ namespace Inheritance
         {
             Console.WriteLine("Поехал в колледж " + name_);
         }
+
+        public override double GetBonus()
+        {
+            return 3.4 * cost_;
+        }
     }
 }
