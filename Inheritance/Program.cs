@@ -15,6 +15,10 @@ namespace Inheritance
             Console.WriteLine(pr.GetName());
             pr.MovePersonToCollege();
 
+            PersonCollege refStudent = new Student(22, "Василиcа");
+            Console.WriteLine(refStudent.GetName());
+            refStudent.MovePersonToCollege();
+
             Console.ReadKey();
         }
     }

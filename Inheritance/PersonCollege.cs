@@ -7,6 +7,7 @@ namespace Inheritance
         protected string name_;
         protected int age_;
 
+
         public PersonCollege(string n, int a)
         {
             name_ = n; 

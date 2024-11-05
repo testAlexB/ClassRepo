@@ -16,7 +16,7 @@ namespace Inheritance
             lesson_ = l;
         }
 
-        public new void MovePersonToCollege()
+        public new void MovePersonToCollege() /// переопределение метода базового класса
         {
             Console.WriteLine("               " + name_ + ", " + LessonToString(lesson_));
         }
