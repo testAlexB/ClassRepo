@@ -13,6 +13,7 @@ namespace Discounts
             products.Add(new Milk("Простоквашино.", 500.0, 2));
             products.Add(new Water("Сенежская", 42, 2));
             products.Add(new Water("Святой источник", 5, 10));
+            products.Add(new Product("Просто товар", 1, 1));
 
             Print(products);
 
