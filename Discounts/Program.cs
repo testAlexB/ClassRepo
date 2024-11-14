@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
+using System.Reflection;
 
 namespace Discounts
 {
@@ -17,18 +19,22 @@ namespace Discounts
             products.Add(new Water("Святой источник", 5, 10));
             products.Add(new Product("Просто товар", 1, 1));
 
-            Print(products);
+            //Print(products);
 
 
             string fileName = "products.csv";
+            string fullPathToFile = Directory.GetCurrentDirectory() + "\\" + fileName;
             if (SaveToCSV(fileName, products))
             {
-                Console.WriteLine($"Информация в файл {Directory.GetCurrentDirectory() + "\\" + fileName} сохранена");
+                Console.WriteLine($"Информация в файл {fullPathToFile} сохранена");
             }
             else
             {
-                Console.WriteLine($"Сохранение в файл {Directory.GetCurrentDirectory() + "\\" + fileName} выполнить не удалось");
+                Console.WriteLine($"Сохранение в файл {fullPathToFile} выполнить не удалось");
             }
+
+            List<Product> productsFromFile = LoadProductsFromCSVFile(fullPathToFile);
+            Print(productsFromFile);
 
             Console.ReadKey();
         }
@@ -70,6 +76,28 @@ namespace Discounts
             outputFile.Dispose(); /// перенести накопленный текст в файл
 
             return File.Exists(fileName);
+        }
+
+        static List<Product> LoadProductsFromCSVFile(string fileName)
+        {
+            List<Product> result = new List<Product>();
+
+            string contents = File.ReadAllText(fileName);
+            string[] rows = contents.Split('\n');
+
+            foreach (string row in rows) 
+            {
+                string[] data = row.Split(';');
+                if(data.Length != 3)
+                {
+                    continue;
+                }
+
+                Product product = new Product(data[0], Convert.ToDouble(data[1]), Convert.ToInt32(data[2]));
+                result.Add(product);
+            }
+
+            return result;
         }
     }
 }
