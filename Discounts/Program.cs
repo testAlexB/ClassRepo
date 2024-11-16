@@ -15,7 +15,7 @@ namespace Discounts
             List<Product> products = new List<Product>();
             products.Add(new Milk("Дубрава, 100 мл.", 100.0, 10));
             products.Add(new Milk("Простоквашино.", 500.0, 2));
-            products.Add(new Water("Сенежская", 42, 2));
+            products.Add(new Water("Сенежская", 42, 6));
             products.Add(new Water("Святой источник", 5, 10));
             products.Add(new Product("Просто товар", 1, 1));
 
@@ -67,7 +67,8 @@ namespace Discounts
             {
                 string csvLine =  product.GetName() + ";" 
                                   + product.GetPrice() + ";" 
-                                  + product.GetQuantity();
+                                  + product.GetQuantity() + ";"
+                                  + product.GetType().Name;
 
                 outputFile.WriteLine(csvLine);
             }
@@ -88,13 +89,30 @@ namespace Discounts
             foreach (string row in rows) 
             {
                 string[] data = row.Split(';');
-                if(data.Length != 3)
+                if(data.Length != 4)
                 {
                     continue;
                 }
 
-                Product product = new Product(data[0], Convert.ToDouble(data[1]), Convert.ToInt32(data[2]));
-                result.Add(product);
+                string type = data[3];
+                type = type.Remove(type.Length - 1);
+                Console.WriteLine(type);
+                string nameProduct = data[0];
+                double price = Convert.ToDouble(data[1]);
+                int quantity = Convert.ToInt32(data[2]); 
+                
+                if (type == "Milk")
+                {
+                    result.Add(new Milk(nameProduct, price, quantity));
+                }
+                else if (type == "Water")
+                {
+                    result.Add(new Water(nameProduct, price, quantity));
+                }
+                else
+                {
+                    result.Add(new Product(nameProduct, price, quantity));
+                }
             }
 
             return result;
