@@ -6,6 +6,11 @@
         protected double price_;
         protected int quantity_;
 
+        public Product()
+        {
+
+        }
+
         public Product(string name, double price, int quantity)
         {
             name_ = name;

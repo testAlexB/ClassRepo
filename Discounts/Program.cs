@@ -28,7 +28,8 @@ namespace Discounts
                 Console.WriteLine($"Сохранение в файл {fullPathToFile} выполнить не удалось");
             }
 
-            List<Product> productsFromFile = csvFile.LoadProductsFromCSVFile();
+            //List<Product> productsFromFile = csvFile.LoadProductsFromCSVFile();
+            List<Product> productsFromFile = csvFile.StreamReadFile();
             Print(productsFromFile);
 
             Console.ReadKey();

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System;
+using System.Runtime.Remoting.Messaging;
 
 namespace Discounts
 {
@@ -52,34 +53,54 @@ namespace Discounts
 
             foreach (string row in rows)
             {
-                string[] data = row.Split(';');
-                if (data.Length != 4)
-                {
-                    continue;
-                }
-
-                string type = data[3];
-                type = type.Remove(type.Length - 1);
-                Console.WriteLine(type);
-                string nameProduct = data[0];
-                double price = Convert.ToDouble(data[1]);
-                int quantity = Convert.ToInt32(data[2]);
-
-                if (type == "Milk")
-                {
-                    result.Add(new Milk(nameProduct, price, quantity));
-                }
-                else if (type == "Water")
-                {
-                    result.Add(new Water(nameProduct, price, quantity));
-                }
-                else
-                {
-                    result.Add(new Product(nameProduct, price, quantity));
-                }
+                result.Add(ProcessCSVLine(row));
             }
 
             return result;
+        }
+
+        public List<Product> StreamReadFile()
+        {
+            StreamReader stream = new StreamReader(fileName_);
+
+            string line;
+            List<Product> result = new List<Product>();
+            while ((line = stream.ReadLine()) != null)
+            {
+                result.Add(ProcessCSVLine((line)));
+            }
+
+            return result;
+        }
+
+        static private Product ProcessCSVLine(string row)
+        {
+            string[] data = row.Split(';');
+            if (data.Length != 4)
+            {
+                return new Product();
+            }
+
+            string type = data[3];
+            if (type.Contains("\\r"))
+            {
+                type = type.Remove(type.Length - 1);
+            }
+
+            string nameProduct = data[0];
+            double price = Convert.ToDouble(data[1]);
+            int quantity = Convert.ToInt32(data[2]);
+
+            if (type == "Milk")
+            {
+                return new Milk(nameProduct, price, quantity);
+            }
+            else if (type == "Water")
+            {
+                return new Water(nameProduct, price, quantity);
+            }
+
+             return new Product(nameProduct, price, quantity);
         }
     }
 }
