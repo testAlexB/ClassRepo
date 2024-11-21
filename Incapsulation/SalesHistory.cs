@@ -21,5 +21,10 @@ namespace Incapsulation
 
             return result;
         }
+
+        public List<Sale> GetSales()
+        {
+            return sales_;
+        }
     }
 }

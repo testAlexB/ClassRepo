@@ -27,5 +27,15 @@ namespace Incapsulation
         {
             return count_ * product_.GetPrice();
         }
+
+        public int Check() 
+        { 
+            return check_;
+        }
+
+        public string ConvertToString()
+        {
+            return $"товар {product_.ConvertToString()}, дата: {date_}, количество: {count_}, к оплате: {CalcCost()}";
+        }
     }
 }

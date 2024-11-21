@@ -26,7 +26,48 @@ namespace Incapsulation
             /// ДЗ: вывести на экран чеки (товар, дата, количество, стоимость)
             /// + разобраться с тем, почему стало 1135. Должно быть 770
 
+            var checks = GroupInfoByNumberCheck(history);
+            foreach (KeyValuePair<int,SalesHistory> check in checks) 
+            {
+                Console.WriteLine("Номер чека " +  check.Key);
+                List<Sale> sales = check.Value.GetSales();
+                foreach (Sale s in sales)
+                {
+                    Console.WriteLine(s.ConvertToString());
+                }
+
+                Console.WriteLine("------------------------------------");
+            }
+
             Console.ReadKey();
+        }
+
+        private static Dictionary<int, SalesHistory> GroupInfoByNumberCheck(SalesHistory allSales)
+        {
+            Dictionary<int, SalesHistory> result = new Dictionary<int, SalesHistory>();
+
+            /// 1. Перебор всех продаж, которые есть
+            /// 2. Рассматриваем конкретную продажу, интересовать будет номер чека
+            /// 3. Под соответствующим ключом (собстенно, номером чека), сохраняем продажу в словарь
+            
+
+            List<Sale> sales = allSales.GetSales();
+            foreach (Sale sale in sales)
+            {
+                int check = sale.Check();
+                if (result.ContainsKey(check))
+                {
+                    result[check].AddSale(sale);
+                }
+                else
+                {
+                    SalesHistory s = new SalesHistory();
+                    s.AddSale(sale);
+                    result.Add(check, s);
+                }
+            }
+
+            return result;
         }
 
 

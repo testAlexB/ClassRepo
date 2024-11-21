@@ -15,5 +15,10 @@
         {
             return price_;
         }
+
+        public string ConvertToString()
+        {
+            return name_;
+        }
     }
 }
