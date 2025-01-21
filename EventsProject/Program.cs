@@ -1,4 +1,6 @@
-﻿namespace EventsProject
+﻿using System;
+
+namespace EventsProject
 {
     class Program
     {
@@ -13,6 +15,8 @@
             receiverFile.Connect(sender);
 
             sender.Send();
+
+            Console.ReadKey();
         }
     }
 }
