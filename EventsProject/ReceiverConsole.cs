@@ -7,10 +7,10 @@ namespace EventsProject
         public void Connect(Sender s)
         {
             /// подписываемся на события объекта s
-            s.Notify += S_Notify;
+            s.Notify += ShowMessageToConsole;
         }
 
-        private void S_Notify(string m)
+        private void ShowMessageToConsole(string m)
         {
             Console.WriteLine($"{this.GetHashCode()} object reaction by message: {m}");
         }

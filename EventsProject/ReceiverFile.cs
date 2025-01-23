@@ -6,10 +6,10 @@ namespace EventsProject
     {
         public void Connect(Sender s)
         {
-            s.Notify += S_Notify;
+            s.Notify += SaveMessageToFile;
         }
 
-        private void S_Notify(string m)
+        private void SaveMessageToFile(string m)
         {
             File.WriteAllText(Path.Combine("D:\\Бойков\\P30", "ReceiverFile.txt"), m);
         }
