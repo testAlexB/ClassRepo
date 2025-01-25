@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace FirstWinFormsApp
@@ -29,23 +30,15 @@ namespace FirstWinFormsApp
             return true;
         }
 
-        // ДЗ: добавить проверку на пробелы в конце
         private void AddPeople_Click(object sender, System.EventArgs e)
         {
-            string inputText = PeopleTextBox.Text;
-            if(inputText == string.Empty)
+            if (SelectedImageFileDialog.ShowDialog() == DialogResult.Cancel)
             {
-                MessageBox.Show("Пустые значения недопустимы");
                 return;
             }
-
-            if(stringIsSpaces(inputText))
-            {
-                MessageBox.Show("Извините, у Вас одни пробелы");
-                return;
-            }
-
-            Peoples.Items.Add(inputText);
+            // получаем выбранный файл
+            string fullPathToFile = SelectedImageFileDialog.FileName;
+            Peoples.Items.Add(Path.GetFileName(fullPathToFile));
         }
 
         private void Peoples_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -58,6 +51,14 @@ namespace FirstWinFormsApp
                     Peoples.Items.RemoveAt(selectedIndex);
                 }
             }
+        }
+
+        private void Peoples_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            /// ДЗ: загружать связанную с выбранным элементом картинку в область PictureArea
+            MessageBox.Show(Peoples.SelectedItem.ToString());
+
+            PictureArea.Load()
         }
     }
 }
