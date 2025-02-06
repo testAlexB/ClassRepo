@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -6,6 +7,7 @@ namespace FirstWinFormsApp
 {
     public partial class MainForm : Form
     {
+        private List<string> fullPaths_ = new List<string>();
         public MainForm()
         {
             InitializeComponent();
@@ -30,6 +32,19 @@ namespace FirstWinFormsApp
             return true;
         }
 
+        private bool isExistsPath(string path)
+        {
+            foreach(string p in fullPaths_)
+            {
+                if(p == path)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private void AddPeople_Click(object sender, System.EventArgs e)
         {
             if (SelectedImageFileDialog.ShowDialog() == DialogResult.Cancel)
@@ -38,27 +53,43 @@ namespace FirstWinFormsApp
             }
             // получаем выбранный файл
             string fullPathToFile = SelectedImageFileDialog.FileName;
-            Peoples.Items.Add(Path.GetFileName(fullPathToFile));
+            string fileName = Path.GetFileName(fullPathToFile);
+            if (isExistsPath(fullPathToFile))
+            {
+                MessageBox.Show(
+                    $"Извините, но такая картинка добавлена с именем {fileName}, " +
+                    $"под индексом: {fullPaths_.IndexOf(fullPathToFile)}"
+                    );
+
+                return;
+            }
+            fullPaths_.Add(fullPathToFile);
+            Images.Items.Add(fileName);
         }
 
         private void Peoples_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
             {
-                int selectedIndex = Peoples.SelectedIndex;
+                int selectedIndex = Images.SelectedIndex;
                 if (selectedIndex >= 0)
                 {
-                    Peoples.Items.RemoveAt(selectedIndex);
+                    Images.Items.RemoveAt(selectedIndex);
                 }
             }
         }
 
-        private void Peoples_SelectedIndexChanged(object sender, System.EventArgs e)
+        private void Images_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             /// ДЗ: загружать связанную с выбранным элементом картинку в область PictureArea
-            MessageBox.Show(Peoples.SelectedItem.ToString());
+            int selectedIndex = Images.SelectedIndex;
+            if(selectedIndex < 0)
+            {
+                return;
+            }
+            string fullPath = fullPaths_[selectedIndex];
 
-            PictureArea.Load()
+            PictureArea.Load(fullPath);
         }
     }
 }
