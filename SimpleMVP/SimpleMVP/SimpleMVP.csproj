@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A9CC9B9F-0A2B-4A78-B1B1-C73928711F82}</ProjectGuid>
+    <ProjectGuid>{6B04C5C6-8D29-41E1-B5A5-E2888FB71301}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>SimpleMVP</RootNamespace>
     <AssemblyName>SimpleMVP</AssemblyName>
@@ -54,7 +54,7 @@
     </Compile>
     <Compile Include="Models\ConcreteStringModel.cs" />
     <Compile Include="Models\IStringModel.cs" />
-    <Compile Include="Presenters\StringPresenter.cs" />
+    <Compile Include="Presenters\StringsPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\IStringView.cs" />

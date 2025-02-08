@@ -52,19 +52,21 @@ namespace FirstWinFormsApp
                 return;
             }
             // получаем выбранный файл
-            string fullPathToFile = SelectedImageFileDialog.FileName;
-            string fileName = Path.GetFileName(fullPathToFile);
-            if (isExistsPath(fullPathToFile))
+            foreach (string fullPathToFile in SelectedImageFileDialog.FileNames)
             {
-                MessageBox.Show(
-                    $"Извините, но такая картинка добавлена с именем {fileName}, " +
-                    $"под индексом: {fullPaths_.IndexOf(fullPathToFile)}"
-                    );
+                string fileName = Path.GetFileName(fullPathToFile);
+                if (isExistsPath(fullPathToFile))
+                {
+                    MessageBox.Show(
+                        $"Извините, но такая картинка добавлена с именем {fileName}, " +
+                        $"под индексом: {fullPaths_.IndexOf(fullPathToFile)}"
+                        );
 
-                return;
+                    return;
+                }
+                fullPaths_.Add(fullPathToFile);
+                Images.Items.Add(fileName);
             }
-            fullPaths_.Add(fullPathToFile);
-            Images.Items.Add(fileName);
         }
 
         private void Peoples_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -90,6 +92,20 @@ namespace FirstWinFormsApp
             string fullPath = fullPaths_[selectedIndex];
 
             PictureArea.Load(fullPath);
+        }
+
+        private void button_editName_Click(object sender, System.EventArgs e)
+        {
+            int selectIndex = Images.SelectedIndex;
+            if (selectIndex < 0)
+            {
+                MessageBox.Show("не выбран ни один элемент");
+            }
+            else
+            {
+                Images.Items[selectIndex] = textBox_newName.Text;
+            }
+
         }
     }
 }

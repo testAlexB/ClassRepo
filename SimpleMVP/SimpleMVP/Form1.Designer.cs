@@ -34,16 +34,17 @@
             // StringList
             // 
             this.StringList.FormattingEnabled = true;
-            this.StringList.Location = new System.Drawing.Point(107, 20);
+            this.StringList.ItemHeight = 16;
+            this.StringList.Location = new System.Drawing.Point(274, 66);
             this.StringList.Name = "StringList";
-            this.StringList.Size = new System.Drawing.Size(120, 134);
+            this.StringList.Size = new System.Drawing.Size(285, 228);
             this.StringList.TabIndex = 0;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(333, 227);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.StringList);
             this.Name = "Form1";
             this.Text = "Form1";
