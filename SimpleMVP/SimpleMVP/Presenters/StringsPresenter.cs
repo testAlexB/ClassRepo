@@ -1,5 +1,6 @@
 ﻿using SimpleMVP.Models;
 using SimpleMVP.Views;
+using System.Windows.Forms;
 
 namespace SimpleMVP.Presenters
 {
@@ -14,10 +15,16 @@ namespace SimpleMVP.Presenters
             view_ = view;
 
             model_.SuccessLoadedData += Model__SuccessLoadedData;
-
-
             model_.LoadData();
 
+            view_.SortingEvent += View__SortingEvent;
+
+        }
+
+        private void View__SortingEvent(bool sortingOrder)
+        {
+            model_.SuccessLoadedData += Model__SuccessLoadedData;
+            model_.SortData(sortingOrder);
         }
 
         private void Model__SuccessLoadedData()

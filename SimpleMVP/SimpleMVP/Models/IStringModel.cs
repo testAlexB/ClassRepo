@@ -8,6 +8,8 @@ namespace SimpleMVP.Models
         void LoadData();
         List<string> GetData();
 
+        void SortData(bool sortingOrder);
+
         event Action SuccessLoadedData;
     }
 }
