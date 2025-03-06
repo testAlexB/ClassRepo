@@ -14,11 +14,14 @@ namespace TreeView
     public partial class MainForm: Form
     {
         private List<TreeNodeModel> treeData_;
+        private UsersModel usersModel_;
         public MainForm()
         {
             InitializeComponent();
 
             treeData_ = new List<TreeNodeModel>();
+
+            usersModel_ = new UsersModel();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -41,6 +44,9 @@ namespace TreeView
             FillTreeNodeCollection(treeData_, MyTreeView.Nodes);
 
             MyTreeView.ExpandAll();
+
+            Table.DataSource = usersModel_.Users;
+            FillTableAliases();
         }
 
         static private void FillTreeNodeCollection(List<TreeNodeModel> sourceData, //данные источника - модели
@@ -56,6 +62,19 @@ namespace TreeView
                     FillTreeNodeCollection(node.Children, treeNode.Nodes); //переносим дочерние элементы узла модели в дочерние элементы узла представления
                 }
             }
+        }
+
+        private void FillTableAliases()
+        {
+            foreach(DataGridViewColumn column in Table.Columns)
+            {
+                if(User.Aliases.TryGetValue(column.Name, out string alias))
+                {
+                    column.HeaderText = alias;
+                }
+            }
+
+            Table.Columns[Table.ColumnCount - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         private void MyTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)

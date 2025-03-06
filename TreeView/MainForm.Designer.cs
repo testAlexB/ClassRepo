@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             this.MyTreeView = new System.Windows.Forms.TreeView();
+            this.Table = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.Table)).BeginInit();
             this.SuspendLayout();
             // 
             // MyTreeView
             // 
-            this.MyTreeView.Location = new System.Drawing.Point(261, 38);
+            this.MyTreeView.Location = new System.Drawing.Point(12, 12);
             this.MyTreeView.Name = "MyTreeView";
             this.MyTreeView.Size = new System.Drawing.Size(232, 302);
             this.MyTreeView.TabIndex = 0;
@@ -43,15 +45,29 @@
             this.MyTreeView.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.MyTreeView_AfterExpand);
             this.MyTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.MyTreeView_NodeMouseDoubleClick);
             // 
+            // Table
+            // 
+            this.Table.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Table.Location = new System.Drawing.Point(264, 12);
+            this.Table.Name = "Table";
+            this.Table.RowHeadersWidth = 51;
+            this.Table.RowTemplate.Height = 24;
+            this.Table.Size = new System.Drawing.Size(734, 302);
+            this.Table.TabIndex = 1;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1020, 450);
+            this.Controls.Add(this.Table);
             this.Controls.Add(this.MyTreeView);
             this.Name = "MainForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.Table)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -59,6 +75,7 @@
         #endregion
 
         private System.Windows.Forms.TreeView MyTreeView;
+        private System.Windows.Forms.DataGridView Table;
     }
 }
 
