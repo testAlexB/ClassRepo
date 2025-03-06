@@ -37,6 +37,11 @@
             this.MyTreeView.Name = "MyTreeView";
             this.MyTreeView.Size = new System.Drawing.Size(232, 302);
             this.MyTreeView.TabIndex = 0;
+            this.MyTreeView.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.MyTreeView_BeforeCollapse);
+            this.MyTreeView.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.MyTreeView_AfterCollapse);
+            this.MyTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.MyTreeView_BeforeExpand);
+            this.MyTreeView.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.MyTreeView_AfterExpand);
+            this.MyTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.MyTreeView_NodeMouseDoubleClick);
             // 
             // MainForm
             // 

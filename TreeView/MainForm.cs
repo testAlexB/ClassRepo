@@ -39,6 +39,8 @@ namespace TreeView
             treeData_.Add(new TreeNodeModel("USA"));
 
             FillTreeNodeCollection(treeData_, MyTreeView.Nodes);
+
+            MyTreeView.ExpandAll();
         }
 
         static private void FillTreeNodeCollection(List<TreeNodeModel> sourceData, //данные источника - модели
@@ -54,6 +56,31 @@ namespace TreeView
                     FillTreeNodeCollection(node.Children, treeNode.Nodes); //переносим дочерние элементы узла модели в дочерние элементы узла представления
                 }
             }
+        }
+
+        private void MyTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            MessageBox.Show($"Вы дважды кликнули на узел: {e.Node.Text}");
+        }
+
+        private void MyTreeView_AfterExpand(object sender, TreeViewEventArgs e)
+        {
+            MessageBox.Show($"Вы развернули узел: {e.Node.Text}");
+        }
+
+        private void MyTreeView_AfterCollapse(object sender, TreeViewEventArgs e)
+        {
+            MessageBox.Show($"Вы свернули узел: {e.Node.Text}");
+        }
+
+        private void MyTreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
+        {
+            MessageBox.Show($"Вы хотите развернуть узел: {e.Node.Text}");
+        }
+
+        private void MyTreeView_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
+        {
+            MessageBox.Show($"Вы хотите свернуть узел: {e.Node.Text}");
         }
     }
 }
