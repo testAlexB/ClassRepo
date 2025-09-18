@@ -26,5 +26,21 @@ namespace Commantary
         {
             repo_.SaveComment(login, comment);
         }
+
+        public List<string> SearchUserCommentsByTemplate(string login, string template)
+        {
+            List<string> userComments = GetUserComments(login);
+            List<string> result = new List<string>();
+
+            foreach (string comment in userComments)
+            {
+                if (comment.Contains(template))
+                {
+                    result.Add(comment);
+                }
+            }
+
+            return result;
+        }
     }
 }
