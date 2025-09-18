@@ -9,7 +9,7 @@ namespace RegressionTesting
     {
 
         [TestMethod]
-        public void TestGetUserComments()
+        public void TestGetUserCommentsExists()
         {
             var manager = new CommentaryManager(new CommentaryRepo());
 
@@ -24,5 +24,20 @@ namespace RegressionTesting
                                                          "Я в принципе устал"};
             CollectionAssert.AreEqual(expected, userComments);
         }
+
+        public void TestGetUserCommentsNotExists()
+        {
+            var manager = new CommentaryManager(new CommentaryRepo());
+
+            manager.AddComment("Петр", "Я сегодня устал");
+            manager.AddComment("Петр", "Я вчера устал");
+            manager.AddComment("Петр", "Я в принципе устал");
+            manager.AddComment("Юлия", "А я никогда не устаю");
+
+            List<string> userComments = manager.GetUserComments("Левый пользователь");
+            Assert.IsTrue(userComments.Count == 0);
+        }
+
+
     }
 }
