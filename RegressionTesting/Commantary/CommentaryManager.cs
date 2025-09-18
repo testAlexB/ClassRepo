@@ -24,7 +24,19 @@ namespace Commantary
 
         public void AddComment(string login, string comment)
         {
-            repo_.SaveComment(login, comment);
+            List<string> userComments = GetUserComments(login);
+            if (userComments.Count == 0)
+            {
+                repo_.SaveComment(login, comment);
+                return;
+            }
+
+
+            int index = userComments.IndexOf(comment);
+            if (index == -1)
+            {
+                repo_.SaveComment(login, comment);
+            }
         }
 
         public List<string> SearchUserCommentsByTemplate(string login, string template)
