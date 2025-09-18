@@ -8,8 +8,14 @@ namespace Commantary
         ///  ключ - логин пользователя, значение - комментарии
         /// </summary>
         private Dictionary<string, List<string>> comments_ = new Dictionary<string, List<string>>();
-        public void SaveComment(string login, string text)
+
+        public Dictionary<string, List<string>> GetAllCommentaries()
         {
+            return comments_;
+        }
+
+        public void SaveComment(string login, string text)
+        {       
             if (comments_.ContainsKey(login))
             {
                 comments_[login].Add(text);
@@ -19,5 +25,7 @@ namespace Commantary
                 comments_.Add(login, new List<string>() { text});
             }
         }
+
+
     }
 }
